@@ -1,0 +1,11 @@
+% Ball variables
+classdef Ball
+    properties
+        mass = 624; % in grams
+        x = 0;
+        y = 0;
+        initialV = 0;
+        initialVx = 0;
+        initialVy = 0;
+    end
+end
