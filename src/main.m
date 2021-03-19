@@ -11,8 +11,13 @@ env = Environment;
 
 
 % set initial variables
-ball.initialV = 8.5;
-ball.angle = 30;
-getInitialVx(ball);
+ball.initialV = 20;
+ball.angle = 50;
+ball.initialY = 5;
+
+ball.initialVx = getInitialVx(ball);
+ball.initialVy = getInitialVy(ball);
+
+disp(getTime(ball));
 
 % display graph
