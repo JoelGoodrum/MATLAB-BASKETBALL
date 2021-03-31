@@ -8,16 +8,15 @@ ball = Ball;
 player = Player;
 hoop = Hoop;
 env = Environment;
+game = GameFunctions;
+
 
 
 % set initial variables
-ball.initialV = 20;
-ball.angle = 50;
-ball.initialY = 5;
+setBallVar(ball);
+setHoopVar(hoop);
 
-ball.initialVx = getInitialVx(ball);
-ball.initialVy = getInitialVy(ball);
+% draw hoop
+drawHoop(hoop);
 
-disp(getTime(ball));
 
-% display graph

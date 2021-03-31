@@ -18,6 +18,16 @@ classdef Ball
     end
     
     methods
+        function output = setBallVar(ball)
+            ball.initialV = 20;
+            ball.angle = 50;
+            ball.initialY = 5;
+
+            ball.initialVx = getInitialVx(ball);
+            ball.initialVy = getInitialVy(ball);
+            disp('ball data set')
+        end
+        
         function output = getInitialVx(obj)
             output = obj.initialV * cosd(obj.angle);
         end
@@ -35,6 +45,8 @@ classdef Ball
             s = (a * (t.^2)) + (b * t) + c;
             plot(t,s);
         end
+        
+
         
         function output = getDistance(obj)
             output = obj.timeInAir * obj.initialVx;
