@@ -16,7 +16,12 @@ game = GameFunctions;
 setBallVar(ball);
 setHoopVar(hoop);
 
+
 % draw hoop
 drawHoop(hoop);
+disp('data');
+disp(hoop.x);
+disp(hoop.y);
+drawTrajectory(ball, hoop.x, hoop.y);
 
 

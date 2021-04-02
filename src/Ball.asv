@@ -37,7 +37,6 @@ classdef Ball < handle
         end
         
         function output = drawTrajectory(obj, hoopX, hoopY)
-            
             score = "false"; 
             a = obj.gravity * 0.5;
             b = obj.initialVy;
@@ -67,6 +66,8 @@ classdef Ball < handle
             function output = isScore(x, y, hoopX, hoopY)
                 dev = 10;
                 if(y > (hoopY - dev) && y < (hoopY + dev))
+                    disp('y');
+                    disp(y);
                     if(x > hoopX && x < (hoopX + 1))
                         output = "true";
                         return;
