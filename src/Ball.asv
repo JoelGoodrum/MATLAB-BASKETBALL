@@ -3,7 +3,7 @@
 
 classdef Ball < handle
     properties
-        mass = 624; % in grams
+        mass = 6240; % in grams
         x = 0;
         y = 0;
         initialX = 0;
@@ -37,6 +37,9 @@ classdef Ball < handle
         end
         
         function output = drawTrajectory(obj, hoopX, hoopY)
+            % zoom out variables
+            lvl = [-10,-10];
+            plot(-10)
             score = "false"; 
             a = obj.gravity * 0.5;
             b = obj.initialVy;
@@ -47,11 +50,12 @@ classdef Ball < handle
             y = (a * (x.^2)) + (b * x) + c;
            
            
-            while(x < 10)
+            while(y > 0)
                 y = (a * (x.^2)) + (b * x) + c;
                 if(score == "false")
                     score = isScore(x, y, hoopX, hoopY);
                 end
+                pause(0.1);
                 plot(x,y,"o")
                 hold on
                 x =  x + 0.1;
@@ -66,8 +70,6 @@ classdef Ball < handle
             function output = isScore(x, y, hoopX, hoopY)
                 dev = 10;
                 if(y > (hoopY - dev) && y < (hoopY + dev))
-                    disp('y');
-                    disp(y);
                     if(x > hoopX && x < (hoopX + 1))
                         output = "true";
                         return;

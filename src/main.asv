@@ -7,16 +7,17 @@ height = 600;
 fig = uifigure('Position',[300 300 width height]);
 
 % plot area
-
-ax = uiaxes(fig);
+%{
+ax = axes(fig);
 ax.Units = 'pixels';
 ax.Position = [100 120 800 380];
+%}
 
+rec = rectang
 
 
 % zoom out variables
-hold(ax, 'on');
-axis(ax,[-2 15 -10 130]);
+% Íaxis(ax,[1 15 -10 130]);
 
 % make objects
 ball = Ball;
@@ -34,7 +35,6 @@ setHoopVar(hoop);
 
 % draw hoop
 drawHoop(hoop, ax);
-drawTrajectory(ball, hoop.x, hoop.y, ax);
-
+% drawTrajectory(ball, hoop.x, hoop.y, ax);
 
 

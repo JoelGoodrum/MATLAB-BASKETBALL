@@ -13,20 +13,19 @@ classdef Hoop < handle
     methods
         
         function output = setHoopVar(hoop)
-            hoop.x = 8;
-            hoop.y = 80;
+            hoop.x = 9;
+            hoop.y = 10;
             hoop.r = 10;
             disp('hoop var set')
         end
         
-        function output = drawHoop(hoop)
+        function output = drawHoop(hoop, ax)
             x1 = hoop.x;
             x2 = hoop.x + 1;
             
-            plot(x1,hoop.y,"*");
-            hold on
-            plot(x2,hoop.y,"*");
-            hold on
+            plot(ax, x1,hoop.y,"*");
+            plot(ax, x2,hoop.y,"*");
+           
         end
         
     end
