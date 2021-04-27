@@ -15,22 +15,25 @@ classdef Ball < handle
         tension = 0;
         timeInAir = 0;
         gravity = -9.8 % m/s
+
     end
     
     methods
         function output = setBallVar(ball)
-            ball.initialV = 50;
-            ball.angle = 70;
-            ball.initialY = 5;
+            ball.initialV = 17;
+            ball.angle = 45;  % degrees
+            ball.initialY = 5; % initial height off the ground
 
             ball.initialVx = getInitialVx(ball);
             ball.initialVy = getInitialVy(ball);
-            disp('ball data set')
+            disp('ball data set');
         end
         
         function output = getInitialVx(obj)
             output = obj.initialV * cosd(obj.angle);
         end
+        
+       
         
         function output = getInitialVy(obj)
             output = obj.initialV * sind(obj.angle);
@@ -41,23 +44,27 @@ classdef Ball < handle
             
             score = "false"; 
             a = obj.gravity * 0.5;
-            b = obj.initialVy;
+            b = getInitialVy(obj);
             c = obj.initialY;
             output = (-b -sqrt(b * b - (4 * a * c))) / (2 * a);
+            timedx = 0.05; % how fast time goes by
             
-            x = 0
-            y = (a * (x.^2)) + (b * x) + c;
+            
+            time = 0;
+            y = 0; % height of ball according to time
+            x = 0; % position of ball acording to time
            
            
-            while(y > 0)
-                y = (a * (x.^2)) + (b * x) + c;
+            while(y > -1)
+                y = (a * (time.^2)) + (b * time) + c;
+                x = time * obj.initialVx;
                 if(score == "false")
                     score = isScore(x, y, hoopX, hoopY);
                 end
                 pause(0.1);
                 plot(ax,x,y,"o")
       
-                x =  x + 0.1;
+                time =  time + timedx;
             end
             
             % text(4,0,score);

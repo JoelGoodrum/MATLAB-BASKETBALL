@@ -15,13 +15,14 @@ classdef Ball < handle
         tension = 0;
         timeInAir = 0;
         gravity = -9.8 % m/s
+        dx = 0 ; % constant change in x axes
     end
     
     methods
         function output = setBallVar(ball)
-            ball.initialV = 50;
-            ball.angle = 70;
-            ball.initialY = 5;
+            ball.initialV = 100;
+            ball.angle = 100;  % degrees
+            ball.initialY = 5; % initial height off the ground
 
             ball.initialVx = getInitialVx(ball);
             ball.initialVy = getInitialVy(ball);
@@ -33,16 +34,20 @@ classdef Ball < handle
         end
         
         function output = getInitialVy(obj)
+            disp("velocity");
+            disp(obj.initialV);
+            disp("angle");
+            disp(obj.angle);
+            disp("initialVy
             output = obj.initialV * sind(obj.angle);
         end
         
-        function output = drawTrajectory(obj, hoopX, hoopY)
-            % zoom out variables
-            lvl = [-10,-10];
-            plot(-10)
+        function output = drawTrajectory(obj, hoopX, hoopY, ax)
+
+            
             score = "false"; 
             a = obj.gravity * 0.5;
-            b = obj.initialVy;
+            b = getInitialVy(obj);
             c = obj.initialY;
             output = (-b -sqrt(b * b - (4 * a * c))) / (2 * a);
             
@@ -56,17 +61,13 @@ classdef Ball < handle
                     score = isScore(x, y, hoopX, hoopY);
                 end
                 pause(0.1);
-                plot(x,y,"o")
-                hold on
-                x =  x + 0.1;
+                plot(ax,x,y,"o")
+      
+                x =  x + obj.dx;
             end
             
-            hold on
-            text(4,0,score);
-            hold off
-            
-            
-            
+            % text(4,0,score);
+
             function output = isScore(x, y, hoopX, hoopY)
                 dev = 10;
                 if(y > (hoopY - dev) && y < (hoopY + dev))

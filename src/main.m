@@ -16,7 +16,7 @@ ax.Position = [100 120 800 380];
 
 % zoom out variables
 hold(ax, 'on');
-axis(ax,[-2 15 -10 130]);
+axis(ax,[-2 40 -10 40]);
 
 % make objects
 ball = Ball;
