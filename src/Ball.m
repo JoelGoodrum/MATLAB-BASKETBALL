@@ -39,15 +39,15 @@ classdef Ball < handle
             output = obj.initialV * sind(obj.angle);
         end
         
-        function output = drawTrajectory(obj, hoopX, hoopY, ax)
-
+        function output = drawTrajectory(obj, hoop, ax)
+            
             
             score = "false"; 
             a = obj.gravity * 0.5;
             b = getInitialVy(obj);
             c = obj.initialY;
             output = (-b -sqrt(b * b - (4 * a * c))) / (2 * a);
-            timedx = 0.05; % how fast time goes by
+            timedx = 0.1; % how fast time goes by
             
             
             time = 0;
@@ -59,7 +59,7 @@ classdef Ball < handle
                 y = (a * (time.^2)) + (b * time) + c;
                 x = time * obj.initialVx;
                 if(score == "false")
-                    score = isScore(x, y, hoopX, hoopY);
+                    score = isScore(x, y, hoop.x, hoop.y);
                 end
                 pause(0.1);
                 plot(ax,x,y,"o")
