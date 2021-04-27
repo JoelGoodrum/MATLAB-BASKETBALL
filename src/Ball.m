@@ -20,13 +20,13 @@ classdef Ball < handle
     
     methods
         function output = setBallVar(ball)
-            ball.initialV = 17;
-            ball.angle = 45;  % degrees
+            ball.initialV = 0;
+            ball.angle = 0;  % degrees
             ball.initialY = 5; % initial height off the ground
 
             ball.initialVx = getInitialVx(ball);
             ball.initialVy = getInitialVy(ball);
-            disp('ball data set');
+            
         end
         
         function output = getInitialVx(obj)
@@ -39,7 +39,7 @@ classdef Ball < handle
             output = obj.initialV * sind(obj.angle);
         end
         
-        function output = drawTrajectory(obj, hoop, ax)
+        function output = drawTrajectory(obj, hoop, ax, fig)
             
             
             score = "false"; 
@@ -55,24 +55,33 @@ classdef Ball < handle
             x = 0; % position of ball acording to time
            
            
-            while(y > -1)
+            while(y > -0.1)
                 y = (a * (time.^2)) + (b * time) + c;
                 x = time * obj.initialVx;
                 if(score == "false")
                     score = isScore(x, y, hoop.x, hoop.y);
                 end
-                pause(0.1);
+                pause(0.01);
                 plot(ax,x,y,"o")
       
                 time =  time + timedx;
             end
             
-            % text(4,0,score);
+            if(score == "false")
+                score = "MISSED!"
+            else
+                score = "SCORE!"
+            end
+            
+            scoreText = uilabel(fig, 'Position',[450,500,180,40],'Text',score,'FontSize',30);
+            pause(2);
+            scoreText.Text = "";
+            
 
             function output = isScore(x, y, hoopX, hoopY)
                 dev = 10;
                 if(y > (hoopY - dev) && y < (hoopY + dev))
-                    if(x > hoopX && x < (hoopX + 1))
+                    if(x > hoopX && x < (hoopX + 5))
                         output = "true";
                         return;
                     end

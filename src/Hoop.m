@@ -16,7 +16,7 @@ classdef Hoop < handle
             hoop.x = 29;    % meters
             hoop.y = 3;     % meters
             hoop.r = 10;
-            disp('hoop var set')
+           
         end
         
         function output = drawHoop(hoop, ax)

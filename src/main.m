@@ -22,6 +22,7 @@ height = 600;
 fig = uifigure('Position',[300 300 width height]);
 
 
+
 % plot area
 ax = uiaxes(fig);
 ax.Units = 'pixels';
@@ -35,12 +36,12 @@ forceText = uilabel(fig, 'Position',[310,85,180,40],'Text','Force','FontSize',20
 force = uislider(fig, 'Position', [250 80, 180 ,10],'ValueChangedFcn', @(sld,event) updateForce(sld,ball));
 force.Limits = [0 50];
 
-forceText = uilabel(fig, 'Position',[600,85,180,40], 'Text','Angle','FontSize',20);
+angleText = uilabel(fig, 'Position',[600,85,180,40], 'Text','Angle','FontSize',20);
 angle = uislider(fig, 'Position', [530 80, 180 ,10], 'ValueChangedFcn', @(sld,event) updateAngle(sld,ball));
 angle.Limits = [0, 90];
 
 % buttons
-shootBtn = uibutton(fig, 'Position',[110,60,100,50],'Text','Shoot','FontSize',20,'ButtonPushedFcn', @(btn, event2, event3, event4) shoot(btn, ball, hoop, ax));
+shootBtn = uibutton(fig, 'Position',[110,60,100,50],'Text','Shoot','FontSize',20,'ButtonPushedFcn', @(btn, event2, event3, event4, event5) shoot(btn, ball, hoop, ax, fig));
 
 
 
@@ -58,15 +59,16 @@ function resetAxes(ax,hoop)
 end
 
 
-function shoot(btn,ball, hoop, ax)
+function shoot(btn,ball, hoop, ax, fig)
     
     global inAir; % checks if ball is in action
     if(inAir == false)
         inAir = true;
         resetAxes(ax,hoop);
-        drawTrajectory(ball, hoop, ax);
+        drawTrajectory(ball, hoop, ax, fig);
         inAir = false;
     end
+    resetAxes(ax,hoop);
   
 end
     
